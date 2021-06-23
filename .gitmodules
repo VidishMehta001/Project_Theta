@@ -1,0 +1,3 @@
+[submodule "rtabmap_ros"]
+	path = rtabmap_ros
+	url = https://github.com/introlab/rtabmap_ros/tree/ros2
