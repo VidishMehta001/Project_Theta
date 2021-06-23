@@ -25,7 +25,7 @@ def generate_launch_description():
             executable='image_proc',
             name='image_proc',
             remappings=[
-                ('image_raw', 'left/image_raw'),
+                ('image_raw', 'left/image'),
                 ('camera_info', 'left/camera_info'),
                 ('image_mono', 'left/image_mono'),
                 ('image_rect', 'left/image_rect'),
@@ -36,7 +36,7 @@ def generate_launch_description():
             executable='image_proc',
             name='image_proc',
             remappings=[
-                ('image_raw', 'right/image_raw'),
+                ('image_raw', 'right/image'),
                 ('camera_info', 'right/camera_info'),
                 ('image_mono', 'right/image_mono'),
                 ('image_rect', 'right/image_rect'),
