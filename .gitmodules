@@ -1,3 +1,12 @@
 [submodule "rtabmap_ros"]
 	path = rtabmap_ros
 	url = git@github.com:introlab/rtabmap_ros.git
+[submodule "luxonis/depthai-ros-examples"]
+	path = luxonis/depthai-ros-examples
+	url = git@github.com:luxonis/depthai-ros-examples.git
+[submodule "luxonis/depthai-ros"]
+	path = luxonis/depthai-ros
+	url = git@github.com:luxonis/depthai-ros.git
+[submodule "image_pipeline"]
+	path = image_pipeline
+	url = git@github.com:ros-perception/image_pipeline.git
