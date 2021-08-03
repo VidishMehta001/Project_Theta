@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'model_inference = theta_pkgs.model_inference:main'
+            'model_inference = theta_pkgs.model_inference:main',
+            'camera_output = theta_pkgs.camera_output:main'
         ],
     },
 )
