@@ -14,4 +14,11 @@ Project Theta is a assistant for the visually impared using SLAM, navigation and
   10. In another terminal run "source install/setup.bash"
   11. Run the odometery node "ros2 run rtabmap_ros stereo_odometry --ros-args -p approx_sync:=true" 
   (This has to be done seperately as odometery fails when running in the launch file for some reason).
+  
+  
+### For Vidish
+  1. Put a folder called models in the workspace directory and put your models in the folder
+  2. Build with "colcon build" ("--packeges-select theta_pkgs", if you already built everything else)
+  3. Run the launchfile "ros2 launch src/launch/webcam_launch.py".
+  Launch file needs to be run from the main workspace folder due to the location of the model files. (Need to adjust this in the future)
 
