@@ -2,10 +2,13 @@ from setuptools import setup
 
 package_name = 'theta_pkgs'
 
+from setuptools import find_packages
+packages=find_packages(exclude=['test'])
+
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name],
+    packages=['theta_pkgs','theta_pkgs/utils','theta_pkgs/object_detection'],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
