@@ -94,6 +94,8 @@ class ModelInference (object):
       	  image_np = img2
       # Actual detection.
       output_dict = ModelInference.run_inference_for_single_image(model, image_np)
+      # Output Dict - detection boxes
+      centroid_list = ModelInference.get_image_centroid(output_dict['detection_boxes'])
       # Visualization of the results of a detection.
       vis_util.visualize_boxes_and_labels_on_image_array(
           image_np,
@@ -106,7 +108,20 @@ class ModelInference (object):
           line_thickness=8)
     
       image_np = bridge.cv2_to_imgmsg(image_np, encoding="rgb8")
-      return image_np
+      return image_np, centroid_list
+
+
+    @staticmethod
+    def get_image_centroid(bboxes):
+        # Get the centroid of every bbox in relative coordinates
+        # Bounding boxes are encoded as [y_min, x_min, y_max, x_max]
+        centroid_list = list()
+        for bbox in bboxes:
+            y_pt = round((bbox[2]-bbox[0])/2+bbox[0],3)
+            x_pt = round((bbox[3]-bbox[1])/2+bbox[1],3)
+            centroid_list.append([y_pt,x_pt])
+        
+        return centroid_list
 				   
 def main(args=None):
 	print(os.getcwd())
