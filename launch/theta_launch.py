@@ -11,13 +11,13 @@ def generate_launch_description():
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
-            arguments = ["0.035", "0", "0", "-1.57079632679", "0", "-1.57079632679", "base_link", "oak-d_left_camera_optical_frame"],
+            arguments = ["0.035", "0", "-1.5", "-1.57079632679", "0", "-1.57079632679", "base_link", "oak-d_left_camera_optical_frame"],
             name='tf2'
         ),
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
-            arguments = ["-0.035", "0", "0", "-1.57079632679", "0", "-1.57079632679", "base_link", "oak-d_right_camera_optical_frame"],
+            arguments = ["-0.035", "0", "-1.5", "-1.57079632679", "0", "-1.57079632679", "base_link", "oak-d_right_camera_optical_frame"],
             name='tf2'
         ),
         Node(
