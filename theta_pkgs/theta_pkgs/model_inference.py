@@ -40,7 +40,7 @@ class ModelImg(Node):
 		
 		# Model Function returns dict of items:location(x,y) + image with BB << Focus today
 		msg = self.mdl_inf.show_inference_single_image(model = self.mdl_inf.model,image_path='', category_index = self.mdl_inf.category_index, image_np = msg)
-		# Function take in items:location(x,y), returns items:location(x,y,z) TODO
+		# Function take in items:location(x,y), returns items:location(x,y,z) TODO in another NODE
 		
 		# publish Image with BB << Focus today
 		
@@ -104,9 +104,9 @@ class ModelInference (object):
           instance_masks=output_dict.get('detection_masks_reframed', None),
           use_normalized_coordinates=True,
           line_thickness=8)
-    
+      # items_dict = {'item':centroid x,y,'item2':centroid x,y'}
       image_np = bridge.cv2_to_imgmsg(image_np, encoding="rgb8")
-      return image_np
+      return image_np #items_dict
 				   
 def main(args=None):
 	print(os.getcwd())
