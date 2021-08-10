@@ -2,8 +2,9 @@
 import os
 import rclpy
 from rclpy.node import Node
-
+import json
 from sensor_msgs.msg import Image
+from std_msgs.msg import String
 print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
 print(os.getcwd())
 import sys
@@ -34,20 +35,22 @@ class ModelImg(Node):
 			10)
 		self.subscription  # prevent unused variable warning
 		self.publisher_ = self.create_publisher(Image, '/right/image_mono2', 10)
+		self.publisher2_ = self.create_publisher(String, '/centroid', 10)
 		self.mdl_inf = ModelInference(model_path, object_file_path)
 
 	def model_callback(self, msg):
 		
 		# Model Function returns dict of items:location(x,y) + image with BB << Focus today
-		msg = self.mdl_inf.show_inference_single_image(model = self.mdl_inf.model,image_path='', category_index = self.mdl_inf.category_index, image_np = msg)
+		msg, centroid_msg = self.mdl_inf.show_inference_single_image(model = self.mdl_inf.model,image_path='', category_index = self.mdl_inf.category_index, image_np = msg)
 		# Function take in items:location(x,y), returns items:location(x,y,z) TODO in another NODE
 		
 		# publish Image with BB << Focus today
-		
+		msg2 = String()
 		#Service call items:items:location(x,y,z) to local "DB" TODO
-		
+		msg2.data = json.dumps(centroid_msg)
 		self.get_logger().info('Got Image')
 		self.publisher_.publish(msg)
+		self.publisher2_.publish(msg2)
 
 class ModelInference (object):
     

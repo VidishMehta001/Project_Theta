@@ -24,6 +24,7 @@ setup(
     entry_points={
         'console_scripts': [
             'model_inference = theta_pkgs.model_inference:main',
+            'depth_coord = theta_pkgs.depth_coord_extract:main',
             'camera_output = theta_pkgs.camera_output:main'
         ],
     },
