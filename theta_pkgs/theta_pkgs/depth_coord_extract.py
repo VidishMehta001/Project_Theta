@@ -74,12 +74,6 @@ class CoordTransfer(Node):
 			return
 
 		image_shape = (self.image_data.shape[0]-1,self.image_data.shape[1]-1)
-		new_coords =[]
-		try:
-			data = data['1']
-		except:
-			print(data)
-			return
 
 		r_mat_x = np.matrix([
 			[1,0,0],
@@ -98,36 +92,40 @@ class CoordTransfer(Node):
 
 		rot_mat = r_mat_x @ r_mat_y @ r_mat_z # 'x @ y' is a replacement for 'np.matmul(x,y)'
 
-		for item in data:
-			# When using colour image Colour_intrinsic > Extrinsic > Right_Mono_intrinsic
-			item.append(1)
-			loc_matrix = np.matrix(item).getT()
-			real_coords = np.matmul(self.inv_color_proj_matrix,loc_matrix)
-			matrix_val = np.matmul(self.right_proj_matrix,real_coords)
-			x, y = int(matrix_val[0]), int(matrix_val[1])
-			if x > 1280 or y >720 or x<0 or y <0:
-				continue
-			z_val_box = self.image_data[x-3:x+3,y-3:y+3,0]
-			try:
-				z_val = mean([item for sublist in z_val_box for item in sublist if item!=0 and item<15000])
-			except:
-				print('NaN Error...')
-				continue
-			location_mat = np.matrix([float(real_coords[2]),float(real_coords[0]),float(real_coords[1])])*z_val/1000
+		new_dict = {}
+		for key in data:
+			sub_data = data[key]
+			new_coords =[]
+			for item in sub_data:
+				# When using colour image Colour_intrinsic > Extrinsic > Right_Mono_intrinsic
+				item.append(1)
+				loc_matrix = np.matrix(item).getT()
+				real_coords = np.matmul(self.inv_color_proj_matrix,loc_matrix)
+				matrix_val = np.matmul(self.right_proj_matrix,real_coords)
+				x, y = int(matrix_val[0]), int(matrix_val[1])
+				if x > 1280 or y >720 or x<0 or y <0:
+					continue
+				z_val_box = self.image_data[x-3:x+3,y-3:y+3,0]
+				try:
+					z_val = mean([item for sublist in z_val_box for item in sublist if item!=0 and item<15000])
+				except:
+					print('NaN Error...')
+					continue
+				location_mat = np.matrix([float(real_coords[2]),float(real_coords[0]),float(real_coords[1])])*z_val/1000
 
-			# Rotate X, Y and Z by self.pose_ori values
-			print(location_mat)
-			location_mat = rot_mat @ location_mat.getT()
+				# Rotate X, Y and Z by self.pose_ori values
+				location_mat = rot_mat @ location_mat.getT()
 
-			location = [float(location_mat[0]),float(location_mat[1]),float(location_mat[2])]
+				location = [float(location_mat[0]),float(location_mat[1]),float(location_mat[2])]
 
-			# Translate X,Y,Z by self.pose_pos values
-			location = list(map(add,location,self.pose_pos))
-			new_coords.append(location)
-			#print("----------------------------------")
+				# Translate X,Y,Z by self.pose_pos values
+				location = list(map(add,location,self.pose_pos))
+				new_coords.append(location)
+				#print("----------------------------------")
 
+			new_dict[key] = new_coords
 		new_msg = String()
-		new_msg.data = json.dumps(new_coords, cls=NpEncoder)
+		new_msg.data = json.dumps(new_dict, cls=NpEncoder)
 		print(self.pose_pos)
 		print(self.pose_ori)
 		self.get_logger().info('Publishing transformed coordinates...')
