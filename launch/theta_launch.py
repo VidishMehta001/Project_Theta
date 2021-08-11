@@ -5,7 +5,7 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='depthai_examples',
-            executable='stereo_node',
+            executable='rgb_stereo_node',
             name='stereo_node'
         ),
         Node(
@@ -65,5 +65,10 @@ def generate_launch_description():
             package='rtabmap_ros',
             executable='rtabmapviz',
             name='rtabmapviz'
-        )
+        ),
+        Node(
+            package='theta_pkgs',
+            executable='model_inference',
+            name='model_inference'
+        ),
     ])

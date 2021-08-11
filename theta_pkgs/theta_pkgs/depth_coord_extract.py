@@ -11,7 +11,8 @@ from cv_bridge import CvBridge
 import numpy as np
 from operator import add
 from statistics import mean
-
+from math import cos, sin
+import math
 
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -44,7 +45,7 @@ class CoordTransfer(Node):
 			10)
 		self.subscription_odom = self.create_subscription(
 			Odometry,
-			'/odometry',
+			'/odom',
 			self.model_callback_odom,
 			10)
 		self.subscription2  # prevent unused variable warning
@@ -79,40 +80,57 @@ class CoordTransfer(Node):
 		except:
 			print(data)
 			return
+
+		r_mat_x = np.matrix([
+			[1,0,0],
+			[0,cos(self.pose_ori[0]),-sin(self.pose_ori[0])],
+			[0,sin(self.pose_ori[0]),cos(self.pose_ori[0])]])
+
+		r_mat_y = np.matrix([
+			[cos(self.pose_ori[1]),0,sin(self.pose_ori[1])],
+			[0,1,0],
+			[-sin(self.pose_ori[1]),0,cos(self.pose_ori[1])]])
+
+		r_mat_z = np.matrix([
+			[cos(self.pose_ori[2]),-sin(self.pose_ori[2]),0],
+			[sin(self.pose_ori[2]),cos(self.pose_ori[2]),0],
+			[0,0,1]])
+
+		rot_mat = r_mat_x @ r_mat_y @ r_mat_z # 'x @ y' is a replacement for 'np.matmul(x,y)'
+
 		for item in data:
 			# When using colour image Colour_intrinsic > Extrinsic > Right_Mono_intrinsic
 			item.append(1)
-			print(item)
 			loc_matrix = np.matrix(item).getT()
-			#print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<',loc_matrix)
 			real_coords = np.matmul(self.inv_color_proj_matrix,loc_matrix)
 			matrix_val = np.matmul(self.right_proj_matrix,real_coords)
-			#print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',matrix_val)
 			x, y = int(matrix_val[0]), int(matrix_val[1])
-			if x > 720 or y >1280 or x<0 or y <0:
+			if x > 1280 or y >720 or x<0 or y <0:
 				continue
 			z_val_box = self.image_data[x-3:x+3,y-3:y+3,0]
 			try:
 				z_val = mean([item for sublist in z_val_box for item in sublist if item!=0 and item<15000])
 			except:
-				print(z_val_box)
 				print('NaN Error...')
 				continue
-			location = list([float(real_coords[0])*z_val, float(real_coords[1])*z_val,float(real_coords[2])*z_val])
-
+			location_mat = np.matrix([float(real_coords[2]),float(real_coords[0]),float(real_coords[1])])*z_val/1000
 
 			# Rotate X, Y and Z by self.pose_ori values
-			#TODO
+			print(location_mat)
+			location_mat = rot_mat @ location_mat.getT()
+
+			location = [float(location_mat[0]),float(location_mat[1]),float(location_mat[2])]
 
 			# Translate X,Y,Z by self.pose_pos values
 			location = list(map(add,location,self.pose_pos))
 			new_coords.append(location)
-			print("----------------------------------")
+			#print("----------------------------------")
 
 		new_msg = String()
 		new_msg.data = json.dumps(new_coords, cls=NpEncoder)
-
-		self.get_logger().info('Got coords...')
+		print(self.pose_pos)
+		print(self.pose_ori)
+		self.get_logger().info('Publishing transformed coordinates...')
 		self.publisher_.publish(new_msg)
 		
 	def model_callback2(self, msg):
@@ -123,11 +141,12 @@ class CoordTransfer(Node):
 		self.image_data = image_np
 
 	def model_callback_odom(self, msg):
-		pose_pos1 = msg.data.pose.pose.position
+		pose_pos1 = msg.pose.pose.position
 		self.pose_pos =[pose_pos1.x,pose_pos1.y,pose_pos1.z]
 
-		pose_ori_quat = msg.data.pose.pose.orientation
+		pose_ori_quat = msg.pose.pose.orientation
 		self.pose_ori = euler_from_quaternion(pose_ori_quat.x,pose_ori_quat.y,pose_ori_quat.z,pose_ori_quat.w)
+
 
 def euler_from_quaternion(x, y, z, w):
 	t0 = +2.0 * (w * x + y * z)

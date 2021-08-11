@@ -142,7 +142,7 @@ class ModelInference (object):
             for bbox in bbox_nest:     
                 y_pt = int(((bbox[2]-bbox[0])/2+bbox[0])*image_np.shape[0])
                 x_pt = int(((bbox[3]-bbox[1])/2+bbox[1])*image_np.shape[1])
-                bbox_list.append([y_pt,x_pt])
+                bbox_list.append([x_pt,y_pt])
             
             centroid_dict[int(each_class)] = bbox_list
             

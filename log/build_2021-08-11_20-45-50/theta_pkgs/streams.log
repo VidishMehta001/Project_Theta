@@ -1,0 +1,310 @@
+[0.201s] Invoking command in '/home/mecarill/ros2_ws/src/theta_pkgs': PYTHONPATH=/home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/theta_pkgs build --build-base /home/mecarill/ros2_ws/src/build/theta_pkgs/build install --prefix /home/mecarill/ros2_ws/src/install/theta_pkgs --record /home/mecarill/ros2_ws/src/build/theta_pkgs/install.log --single-version-externally-managed
+[0.380s] running egg_info
+[0.380s] creating ../build/theta_pkgs/theta_pkgs.egg-info
+[0.380s] writing ../build/theta_pkgs/theta_pkgs.egg-info/PKG-INFO
+[0.381s] writing dependency_links to ../build/theta_pkgs/theta_pkgs.egg-info/dependency_links.txt
+[0.381s] writing entry points to ../build/theta_pkgs/theta_pkgs.egg-info/entry_points.txt
+[0.381s] writing requirements to ../build/theta_pkgs/theta_pkgs.egg-info/requires.txt
+[0.381s] writing top-level names to ../build/theta_pkgs/theta_pkgs.egg-info/top_level.txt
+[0.382s] writing manifest file '../build/theta_pkgs/theta_pkgs.egg-info/SOURCES.txt'
+[0.410s] reading manifest file '../build/theta_pkgs/theta_pkgs.egg-info/SOURCES.txt'
+[0.411s] writing manifest file '../build/theta_pkgs/theta_pkgs.egg-info/SOURCES.txt'
+[0.411s] running build
+[0.411s] running build_py
+[0.411s] creating /home/mecarill/ros2_ws/src/build/theta_pkgs/build
+[0.411s] creating /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib
+[0.412s] creating /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs
+[0.412s] copying theta_pkgs/depth_coord_extract.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs
+[0.412s] copying theta_pkgs/__init__.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs
+[0.412s] copying theta_pkgs/model_inference.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs
+[0.412s] copying theta_pkgs/database_service.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs
+[0.412s] copying theta_pkgs/model_inference (copy).py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs
+[0.412s] copying theta_pkgs/camera_output.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs
+[0.413s] creating /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.413s] copying theta_pkgs/utils/np_box_list_ops_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.413s] copying theta_pkgs/utils/learning_schedules.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.413s] copying theta_pkgs/utils/shape_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.413s] copying theta_pkgs/utils/context_manager_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.413s] copying theta_pkgs/utils/learning_schedules_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.413s] copying theta_pkgs/utils/per_image_vrd_evaluation.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.414s] copying theta_pkgs/utils/dataset_util_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.414s] copying theta_pkgs/utils/spatial_transform_ops_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.414s] copying theta_pkgs/utils/np_box_ops_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.414s] copying theta_pkgs/utils/__init__.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.414s] copying theta_pkgs/utils/bifpn_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.414s] copying theta_pkgs/utils/patch_ops.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.414s] copying theta_pkgs/utils/label_map_util_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.415s] copying theta_pkgs/utils/colab_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.415s] copying theta_pkgs/utils/np_mask_ops.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.415s] copying theta_pkgs/utils/metrics.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.415s] copying theta_pkgs/utils/vrd_evaluation.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.415s] copying theta_pkgs/utils/visualization_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.415s] copying theta_pkgs/utils/np_box_list.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.415s] copying theta_pkgs/utils/ops.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.416s] copying theta_pkgs/utils/dataset_util.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.416s] copying theta_pkgs/utils/variables_helper_tf1_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.416s] copying theta_pkgs/utils/autoaugment_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.416s] copying theta_pkgs/utils/vrd_evaluation_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.416s] copying theta_pkgs/utils/np_box_list_ops.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.416s] copying theta_pkgs/utils/json_utils_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.417s] copying theta_pkgs/utils/variables_helper.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.417s] copying theta_pkgs/utils/spatial_transform_ops.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.417s] copying theta_pkgs/utils/tf_version.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.417s] copying theta_pkgs/utils/target_assigner_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.417s] copying theta_pkgs/utils/patch_ops_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.417s] copying theta_pkgs/utils/category_util_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.417s] copying theta_pkgs/utils/test_case_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.418s] copying theta_pkgs/utils/np_box_list_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.418s] copying theta_pkgs/utils/category_util.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.418s] copying theta_pkgs/utils/np_box_mask_list.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.418s] copying theta_pkgs/utils/shape_utils_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.418s] copying theta_pkgs/utils/test_case.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.418s] copying theta_pkgs/utils/np_box_mask_list_ops_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.418s] copying theta_pkgs/utils/metrics_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.419s] copying theta_pkgs/utils/model_util_tf2_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.419s] copying theta_pkgs/utils/ops_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.419s] copying theta_pkgs/utils/config_util_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.420s] copying theta_pkgs/utils/model_util.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.420s] copying theta_pkgs/utils/static_shape_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.420s] copying theta_pkgs/utils/label_map_util.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.420s] copying theta_pkgs/utils/np_box_mask_list_ops.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.420s] copying theta_pkgs/utils/context_manager.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.420s] copying theta_pkgs/utils/visualization_utils_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.421s] copying theta_pkgs/utils/np_mask_ops_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.421s] copying theta_pkgs/utils/per_image_evaluation_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.421s] copying theta_pkgs/utils/per_image_vrd_evaluation_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.421s] copying theta_pkgs/utils/target_assigner_utils_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.421s] copying theta_pkgs/utils/test_utils_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.421s] copying theta_pkgs/utils/np_box_ops.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.422s] copying theta_pkgs/utils/static_shape.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.422s] copying theta_pkgs/utils/config_util.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.422s] copying theta_pkgs/utils/json_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.422s] copying theta_pkgs/utils/object_detection_evaluation.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.422s] copying theta_pkgs/utils/per_image_evaluation.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.423s] copying theta_pkgs/utils/object_detection_evaluation_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.423s] copying theta_pkgs/utils/np_box_mask_list_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.423s] copying theta_pkgs/utils/test_utils.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils
+[0.424s] creating /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.424s] copying theta_pkgs/object_detection/exporter_lib_tf2_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.424s] copying theta_pkgs/object_detection/model_hparams.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.424s] copying theta_pkgs/object_detection/export_tflite_ssd_graph.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.424s] copying theta_pkgs/object_detection/exporter.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.425s] copying theta_pkgs/object_detection/inputs.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.425s] copying theta_pkgs/object_detection/exporter_lib_v2.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.425s] copying theta_pkgs/object_detection/export_tflite_ssd_graph_lib.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.425s] copying theta_pkgs/object_detection/__init__.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.425s] copying theta_pkgs/object_detection/model_lib_tf2_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.426s] copying theta_pkgs/object_detection/model_main_tf2.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.426s] copying theta_pkgs/object_detection/model_lib_v2.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.426s] copying theta_pkgs/object_detection/model_lib_tf1_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.426s] copying theta_pkgs/object_detection/eval_util.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.427s] copying theta_pkgs/object_detection/inputs_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.427s] copying theta_pkgs/object_detection/exporter_tf1_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.428s] copying theta_pkgs/object_detection/export_inference_graph.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.428s] copying theta_pkgs/object_detection/model_tpu_main.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.428s] copying theta_pkgs/object_detection/model_main.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.428s] copying theta_pkgs/object_detection/exporter_main_v2.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.428s] copying theta_pkgs/object_detection/eval_util_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.429s] copying theta_pkgs/object_detection/model_lib.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.429s] copying theta_pkgs/object_detection/export_tflite_ssd_graph_lib_tf1_test.py -> /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection
+[0.430s] running install
+[0.431s] running install_lib
+[0.432s] creating /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs
+[0.432s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/depth_coord_extract.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs
+[0.432s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/__init__.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs
+[0.432s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/model_inference.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/database_service.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/model_inference (copy).py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/camera_output.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs
+[0.433s] creating /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/exporter_lib_tf2_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_hparams.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/export_tflite_ssd_graph.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/exporter.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.433s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/inputs.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/exporter_lib_v2.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/export_tflite_ssd_graph_lib.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/__init__.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_lib_tf2_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_main_tf2.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_lib_v2.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_lib_tf1_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/eval_util.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/inputs_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/exporter_tf1_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.434s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/export_inference_graph.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_tpu_main.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_main.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/exporter_main_v2.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/eval_util_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/model_lib.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/object_detection/export_tflite_ssd_graph_lib_tf1_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection
+[0.435s] creating /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_list_ops_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/learning_schedules.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.435s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/shape_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/context_manager_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/learning_schedules_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/per_image_vrd_evaluation.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/dataset_util_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/spatial_transform_ops_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_ops_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/__init__.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/bifpn_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/patch_ops.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.436s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/label_map_util_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/colab_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_mask_ops.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/metrics.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/vrd_evaluation.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/visualization_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_list.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/ops.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/dataset_util.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/variables_helper_tf1_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.437s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/autoaugment_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/vrd_evaluation_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_list_ops.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/json_utils_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/variables_helper.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/spatial_transform_ops.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/tf_version.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/target_assigner_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/patch_ops_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.438s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/category_util_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/test_case_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_list_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/category_util.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_mask_list.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/shape_utils_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/test_case.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_mask_list_ops_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/metrics_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/model_util_tf2_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.439s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/ops_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/config_util_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/model_util.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/static_shape_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/label_map_util.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_mask_list_ops.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/context_manager.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/visualization_utils_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_mask_ops_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/per_image_evaluation_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.440s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/per_image_vrd_evaluation_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/target_assigner_utils_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/test_utils_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_ops.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/static_shape.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/config_util.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/json_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/object_detection_evaluation.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/per_image_evaluation.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.441s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/object_detection_evaluation_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.442s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/np_box_mask_list_test.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.442s] copying /home/mecarill/ros2_ws/src/build/theta_pkgs/build/lib/theta_pkgs/utils/test_utils.py -> /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils
+[0.442s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/depth_coord_extract.py to depth_coord_extract.cpython-38.pyc
+[0.444s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/__init__.py to __init__.cpython-38.pyc
+[0.444s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/model_inference.py to model_inference.cpython-38.pyc
+[0.445s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/database_service.py to database_service.cpython-38.pyc
+[0.445s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/model_inference (copy).py to model_inference (copy).cpython-38.pyc
+[0.446s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/camera_output.py to camera_output.cpython-38.pyc
+[0.446s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/exporter_lib_tf2_test.py to exporter_lib_tf2_test.cpython-38.pyc
+[0.447s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_hparams.py to model_hparams.cpython-38.pyc
+[0.447s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/export_tflite_ssd_graph.py to export_tflite_ssd_graph.cpython-38.pyc
+[0.448s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/exporter.py to exporter.cpython-38.pyc
+[0.449s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/inputs.py to inputs.cpython-38.pyc
+[0.452s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/exporter_lib_v2.py to exporter_lib_v2.cpython-38.pyc
+[0.452s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/export_tflite_ssd_graph_lib.py to export_tflite_ssd_graph_lib.cpython-38.pyc
+[0.453s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/__init__.py to __init__.cpython-38.pyc
+[0.453s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_lib_tf2_test.py to model_lib_tf2_test.cpython-38.pyc
+[0.454s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_main_tf2.py to model_main_tf2.cpython-38.pyc
+[0.454s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_lib_v2.py to model_lib_v2.cpython-38.pyc
+[0.457s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_lib_tf1_test.py to model_lib_tf1_test.cpython-38.pyc
+[0.458s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/eval_util.py to eval_util.cpython-38.pyc
+[0.460s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/inputs_test.py to inputs_test.cpython-38.pyc
+[0.467s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/exporter_tf1_test.py to exporter_tf1_test.cpython-38.pyc
+[0.471s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/export_inference_graph.py to export_inference_graph.cpython-38.pyc
+[0.472s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_tpu_main.py to model_tpu_main.cpython-38.pyc
+[0.472s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_main.py to model_main.cpython-38.pyc
+[0.472s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/exporter_main_v2.py to exporter_main_v2.cpython-38.pyc
+[0.473s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/eval_util_test.py to eval_util_test.cpython-38.pyc
+[0.474s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/model_lib.py to model_lib.cpython-38.pyc
+[0.477s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/object_detection/export_tflite_ssd_graph_lib_tf1_test.py to export_tflite_ssd_graph_lib_tf1_test.cpython-38.pyc
+[0.478s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_list_ops_test.py to np_box_list_ops_test.cpython-38.pyc
+[0.480s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/learning_schedules.py to learning_schedules.cpython-38.pyc
+[0.481s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/shape_utils.py to shape_utils.cpython-38.pyc
+[0.482s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/context_manager_test.py to context_manager_test.cpython-38.pyc
+[0.482s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/learning_schedules_test.py to learning_schedules_test.cpython-38.pyc
+[0.483s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/per_image_vrd_evaluation.py to per_image_vrd_evaluation.cpython-38.pyc
+[0.483s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/dataset_util_test.py to dataset_util_test.cpython-38.pyc
+[0.483s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/spatial_transform_ops_test.py to spatial_transform_ops_test.cpython-38.pyc
+[0.487s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_ops_test.py to np_box_ops_test.cpython-38.pyc
+[0.487s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/__init__.py to __init__.cpython-38.pyc
+[0.487s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/bifpn_utils.py to bifpn_utils.cpython-38.pyc
+[0.488s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/patch_ops.py to patch_ops.cpython-38.pyc
+[0.488s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/label_map_util_test.py to label_map_util_test.cpython-38.pyc
+[0.489s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/colab_utils.py to colab_utils.cpython-38.pyc
+[0.490s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_mask_ops.py to np_mask_ops.cpython-38.pyc
+[0.490s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/metrics.py to metrics.cpython-38.pyc
+[0.490s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/vrd_evaluation.py to vrd_evaluation.cpython-38.pyc
+[0.492s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/visualization_utils.py to visualization_utils.cpython-38.pyc
+[0.495s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_list.py to np_box_list.cpython-38.pyc
+[0.496s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/ops.py to ops.cpython-38.pyc
+[0.498s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/dataset_util.py to dataset_util.cpython-38.pyc
+[0.499s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/variables_helper_tf1_test.py to variables_helper_tf1_test.cpython-38.pyc
+[0.500s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/autoaugment_utils.py to autoaugment_utils.cpython-38.pyc
+[0.505s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/vrd_evaluation_test.py to vrd_evaluation_test.cpython-38.pyc
+[0.505s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_list_ops.py to np_box_list_ops.cpython-38.pyc
+[0.506s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/json_utils_test.py to json_utils_test.cpython-38.pyc
+[0.507s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/variables_helper.py to variables_helper.cpython-38.pyc
+[0.507s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/spatial_transform_ops.py to spatial_transform_ops.cpython-38.pyc
+[0.509s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/tf_version.py to tf_version.cpython-38.pyc
+[0.509s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/target_assigner_utils.py to target_assigner_utils.cpython-38.pyc
+[0.510s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/patch_ops_test.py to patch_ops_test.cpython-38.pyc
+[0.510s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/category_util_test.py to category_util_test.cpython-38.pyc
+[0.510s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/test_case_test.py to test_case_test.cpython-38.pyc
+[0.511s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_list_test.py to np_box_list_test.cpython-38.pyc
+[0.511s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/category_util.py to category_util.cpython-38.pyc
+[0.512s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_mask_list.py to np_box_mask_list.cpython-38.pyc
+[0.512s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/shape_utils_test.py to shape_utils_test.cpython-38.pyc
+[0.514s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/test_case.py to test_case.cpython-38.pyc
+[0.514s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_mask_list_ops_test.py to np_box_mask_list_ops_test.cpython-38.pyc
+[0.515s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/metrics_test.py to metrics_test.cpython-38.pyc
+[0.516s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/model_util_tf2_test.py to model_util_tf2_test.cpython-38.pyc
+[0.516s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/ops_test.py to ops_test.cpython-38.pyc
+[0.524s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/config_util_test.py to config_util_test.cpython-38.pyc
+[0.526s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/model_util.py to model_util.cpython-38.pyc
+[0.527s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/static_shape_test.py to static_shape_test.cpython-38.pyc
+[0.527s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/label_map_util.py to label_map_util.cpython-38.pyc
+[0.528s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_mask_list_ops.py to np_box_mask_list_ops.cpython-38.pyc
+[0.529s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/context_manager.py to context_manager.cpython-38.pyc
+[0.529s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/visualization_utils_test.py to visualization_utils_test.cpython-38.pyc
+[0.532s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_mask_ops_test.py to np_mask_ops_test.cpython-38.pyc
+[0.532s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/per_image_evaluation_test.py to per_image_evaluation_test.cpython-38.pyc
+[0.537s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/per_image_vrd_evaluation_test.py to per_image_vrd_evaluation_test.cpython-38.pyc
+[0.538s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/target_assigner_utils_test.py to target_assigner_utils_test.cpython-38.pyc
+[0.539s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/test_utils_test.py to test_utils_test.cpython-38.pyc
+[0.539s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_ops.py to np_box_ops.cpython-38.pyc
+[0.540s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/static_shape.py to static_shape.cpython-38.pyc
+[0.540s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/config_util.py to config_util.cpython-38.pyc
+[0.542s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/json_utils.py to json_utils.cpython-38.pyc
+[0.542s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/object_detection_evaluation.py to object_detection_evaluation.cpython-38.pyc
+[0.545s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/per_image_evaluation.py to per_image_evaluation.cpython-38.pyc
+[0.546s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/object_detection_evaluation_test.py to object_detection_evaluation_test.cpython-38.pyc
+[0.550s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/np_box_mask_list_test.py to np_box_mask_list_test.cpython-38.pyc
+[0.551s] byte-compiling /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs/utils/test_utils.py to test_utils.cpython-38.pyc
+[0.552s] running install_data
+[0.553s] creating /home/mecarill/ros2_ws/src/install/theta_pkgs/share/ament_index
+[0.553s] creating /home/mecarill/ros2_ws/src/install/theta_pkgs/share/ament_index/resource_index
+[0.553s] creating /home/mecarill/ros2_ws/src/install/theta_pkgs/share/ament_index/resource_index/packages
+[0.553s] copying resource/theta_pkgs -> /home/mecarill/ros2_ws/src/install/theta_pkgs/share/ament_index/resource_index/packages
+[0.553s] copying package.xml -> /home/mecarill/ros2_ws/src/install/theta_pkgs/share/theta_pkgs
+[0.553s] running install_egg_info
+[0.554s] Copying ../build/theta_pkgs/theta_pkgs.egg-info to /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages/theta_pkgs-0.0.0-py3.8.egg-info
+[0.554s] running install_scripts
+[0.566s] Installing camera_output script to /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/theta_pkgs
+[0.566s] Installing depth_coord script to /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/theta_pkgs
+[0.566s] Installing model_inference script to /home/mecarill/ros2_ws/src/install/theta_pkgs/lib/theta_pkgs
+[0.568s] writing list of installed files to '/home/mecarill/ros2_ws/src/build/theta_pkgs/install.log'
+[0.580s] Invoked command in '/home/mecarill/ros2_ws/src/theta_pkgs' returned '0': PYTHONPATH=/home/mecarill/ros2_ws/src/install/theta_pkgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/theta_pkgs build --build-base /home/mecarill/ros2_ws/src/build/theta_pkgs/build install --prefix /home/mecarill/ros2_ws/src/install/theta_pkgs --record /home/mecarill/ros2_ws/src/build/theta_pkgs/install.log --single-version-externally-managed
