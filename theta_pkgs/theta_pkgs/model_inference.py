@@ -20,6 +20,17 @@ from tensorflow.python.platform import gfile
 from tensorflow.core.protobuf import saved_model_pb2
 from tensorflow.python.util import compat
 
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        else:
+            return super(NpEncoder, self).default(obj)
+            
 class ModelImg(Node):
 
 	def __init__(self):
@@ -30,7 +41,7 @@ class ModelImg(Node):
 		object_file_path = fileroot+'saved_model/object-detection.pbtxt'
 		self.subscription = self.create_subscription(
 			Image,
-			'/right/image_mono',
+			'/color/image',
 			self.model_callback,
 			10)
 		self.subscription  # prevent unused variable warning
@@ -41,13 +52,13 @@ class ModelImg(Node):
 	def model_callback(self, msg):
 		
 		# Model Function returns dict of items:location(x,y) + image with BB << Focus today
-		msg, centroid_msg = self.mdl_inf.show_inference_single_image(model = self.mdl_inf.model,image_path='', category_index = self.mdl_inf.category_index, image_np = msg)
+		msg, centroid_msg = self.mdl_inf.show_inference_single_image(model = self.mdl_inf.model,image_path='', category_index = self.mdl_inf.category_index, image_np = msg, supi = self)
 		# Function take in items:location(x,y), returns items:location(x,y,z) TODO in another NODE
 		
 		# publish Image with BB << Focus today
 		msg2 = String()
 		#Service call items:items:location(x,y,z) to local "DB" TODO
-		msg2.data = json.dumps(centroid_msg)
+		msg2.data = json.dumps(centroid_msg, cls=NpEncoder)
 		self.get_logger().info('Got Image')
 		self.publisher_.publish(msg)
 		self.publisher2_.publish(msg2)
@@ -87,7 +98,7 @@ class ModelInference (object):
       
      
     @staticmethod
-    def show_inference_single_image(model, image_path, category_index, image_np=""):
+    def show_inference_single_image(model, image_path, category_index,supi, image_np=""):
       # the array based representation of the image will be used later in order to prepare the
       # result image with boxes and labels on it.
       bridge = CvBridge()
@@ -103,7 +114,6 @@ class ModelInference (object):
       
       # Output Dict - detection boxes
       centroid_dict = ModelInference.get_image_centroid(detect_boxes, image_np, detect_classes)
-      
       # Visualization of the results of a detection.
       vis_util.visualize_boxes_and_labels_on_image_array(
           image_np,
@@ -130,11 +140,11 @@ class ModelInference (object):
             bbox_nest = [bboxes[x] for x in [i for i,j in enumerate(classes) if j==each_class]]
             bbox_list = list()
             for bbox in bbox_nest:     
-                y_pt = int(round((bbox[2]-bbox[0])/2+bbox[0],3)*image_np.shape[0])
-                x_pt = int(round((bbox[3]-bbox[1])/2+bbox[1],3)*image_np.shape[1])
+                y_pt = int(((bbox[2]-bbox[0])/2+bbox[0])*image_np.shape[0])
+                x_pt = int(((bbox[3]-bbox[1])/2+bbox[1])*image_np.shape[1])
                 bbox_list.append([y_pt,x_pt])
             
-            centroid_dict[each_class] = bbox_list
+            centroid_dict[int(each_class)] = bbox_list
             
         return centroid_dict
 				   
