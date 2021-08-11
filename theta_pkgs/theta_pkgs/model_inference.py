@@ -97,8 +97,13 @@ class ModelInference (object):
       	  image_np = img2
       # Actual detection.
       output_dict = ModelInference.run_inference_for_single_image(model, image_np)
+      # Get final detect boxes and detect classes
+      detect_boxes = [output_dict['detection_boxes'][x] for x in [i for i,j in enumerate(output_dict['detection_scores']) if j > 0.5]]
+      detect_classes = [output_dict['detection_classes'][x] for x in [i for i,j in enumerate(output_dict['detection_scores']) if j > 0.5]]
+      
       # Output Dict - detection boxes
-      centroid_list = ModelInference.get_image_centroid(output_dict['detection_boxes'])
+      centroid_dict = ModelInference.get_image_centroid(detect_boxes, image_np, detect_classes)
+      
       # Visualization of the results of a detection.
       vis_util.visualize_boxes_and_labels_on_image_array(
           image_np,
@@ -112,20 +117,26 @@ class ModelInference (object):
       # items_dict = {'item':centroid x,y,'item2':centroid x,y'}
       image_np = bridge.cv2_to_imgmsg(image_np, encoding="rgb8")
 
-      return image_np, centroid_list
+      return image_np, centroid_dict
 
 
     @staticmethod
-    def get_image_centroid(bboxes):
+    def get_image_centroid(bboxes, image_np, classes):
         # Get the centroid of every bbox in relative coordinates
         # Bounding boxes are encoded as [y_min, x_min, y_max, x_max]
-        centroid_list = list()
-        for bbox in bboxes:
-            y_pt = round((bbox[2]-bbox[0])/2+bbox[0],3)
-            x_pt = round((bbox[3]-bbox[1])/2+bbox[1],3)
-            centroid_list.append([y_pt,x_pt])
+        centroid_dict = dict()
         
-        return centroid_list
+        for each_class in set(classes):
+            bbox_nest = [bboxes[x] for x in [i for i,j in enumerate(classes) if j==each_class]]
+            bbox_list = list()
+            for bbox in bbox_nest:     
+                y_pt = int(round((bbox[2]-bbox[0])/2+bbox[0],3)*image_np.shape[0])
+                x_pt = int(round((bbox[3]-bbox[1])/2+bbox[1],3)*image_np.shape[1])
+                bbox_list.append([y_pt,x_pt])
+            
+            centroid_dict[each_class] = bbox_list
+            
+        return centroid_dict
 				   
 def main(args=None):
 	print(os.getcwd())
