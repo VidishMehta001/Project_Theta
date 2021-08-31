@@ -67,7 +67,7 @@ class ModelInference (object):
     
     def __init__(self, model_path, object_file_path):
         self.model = tf.saved_model.load(model_path)
-        self.num_classes = 1
+        self.num_classes = 6
         self.label_map = label_map_util.load_labelmap(object_file_path)
         categories = label_map_util.convert_label_map_to_categories(self.label_map, max_num_classes = self.num_classes, use_display_name=True)
         self.category_index = label_map_util.create_category_index(categories)
@@ -107,11 +107,12 @@ class ModelInference (object):
       	  img2 = cv.merge((image_np,image_np,image_np))
       	  image_np = img2
       # Actual detection.
+      image_np = cv.resize(image_np,(320,320))
+      # downsize image before detection
       output_dict = ModelInference.run_inference_for_single_image(model, image_np)
       # Get final detect boxes and detect classes
       detect_boxes = [output_dict['detection_boxes'][x] for x in [i for i,j in enumerate(output_dict['detection_scores']) if j > 0.5]]
-      detect_classes = [output_dict['detection_classes'][x] for x in [i for i,j in enumerate(output_dict['detection_scores']) if j > 0.5]]
-      
+      detect_classes = [output_dict['detection_classes'][x] for x in [i for i,j in enumerate(output_dict['detection_scores']) if j > 0.5]]      
       # Output Dict - detection boxes
       centroid_dict = ModelInference.get_image_centroid(detect_boxes, image_np, detect_classes)
       # Visualization of the results of a detection.
