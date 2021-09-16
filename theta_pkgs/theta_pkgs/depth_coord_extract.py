@@ -105,7 +105,7 @@ class CoordTransfer(Node):
 				x, y = int(matrix_val[0]), int(matrix_val[1])
 				if x > 1280 or y >720 or x<0 or y <0:
 					continue
-				z_val_box = self.image_data[x-3:x+3,y-3:y+3,0]
+				z_val_box = self.image_data[y-3:y+3,x-3:x+3,0]
 				try:
 					z_val = mean([item for sublist in z_val_box for item in sublist if item!=0 and item<15000])
 				except:
@@ -128,7 +128,7 @@ class CoordTransfer(Node):
 		new_msg.data = json.dumps(new_dict, cls=NpEncoder)
 		print(self.pose_pos)
 		print(self.pose_ori)
-		self.get_logger().info('Publishing transformed coordinates...')
+		#self.get_logger().info('Publishing transformed coordinates...')
 		self.publisher_.publish(new_msg)
 		
 	def model_callback2(self, msg):

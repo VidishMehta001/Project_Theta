@@ -10,8 +10,8 @@ class CameraPub(Node):
 	def __init__(self):
 		super().__init__('camera_pub')
 		self.get_logger().info("Starting camera_pub Node...")
-		self.get_logger().info("Publishing to /right/image_mono...")
-		self.publisher_ = self.create_publisher(Image, '/right/image_mono', 10)
+		self.get_logger().info("Publishing to /color/image...")
+		self.publisher_ = self.create_publisher(Image, '/color/image', 10)
 		self.bridge = CvBridge()
 		self.ImgRead()
 

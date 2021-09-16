@@ -1,193 +1,333 @@
-# Copyright 2017 The TensorFlow Authors. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
-"""Functions for computing metrics like precision, recall, CorLoc and etc."""
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+"""
+Model validation metrics
+"""
 
+import math
+import warnings
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
-from six.moves import range
+import torch
 
 
-def compute_precision_recall(scores, labels, num_gt):
-  """Compute precision and recall.
-
-  Args:
-    scores: A float numpy array representing detection score
-    labels: A float numpy array representing weighted true/false positive labels
-    num_gt: Number of ground truth instances
-
-  Raises:
-    ValueError: if the input is not of the correct format
-
-  Returns:
-    precision: Fraction of positive instances over detected ones. This value is
-      None if no ground truth labels are present.
-    recall: Fraction of detected positive instance over all positive instances.
-      This value is None if no ground truth labels are present.
-
-  """
-  if not isinstance(labels, np.ndarray) or len(labels.shape) != 1:
-    raise ValueError("labels must be single dimension numpy array")
-
-  if labels.dtype != np.float and labels.dtype != np.bool:
-    raise ValueError("labels type must be either bool or float")
-
-  if not isinstance(scores, np.ndarray) or len(scores.shape) != 1:
-    raise ValueError("scores must be single dimension numpy array")
-
-  if num_gt < np.sum(labels):
-    raise ValueError("Number of true positives must be smaller than num_gt.")
-
-  if len(scores) != len(labels):
-    raise ValueError("scores and labels must be of the same size.")
-
-  if num_gt == 0:
-    return None, None
-
-  sorted_indices = np.argsort(scores)
-  sorted_indices = sorted_indices[::-1]
-  true_positive_labels = labels[sorted_indices]
-  false_positive_labels = (true_positive_labels <= 0).astype(float)
-  cum_true_positives = np.cumsum(true_positive_labels)
-  cum_false_positives = np.cumsum(false_positive_labels)
-  precision = cum_true_positives.astype(float) / (
-      cum_true_positives + cum_false_positives)
-  recall = cum_true_positives.astype(float) / num_gt
-  return precision, recall
+def fitness(x):
+    # Model fitness as a weighted combination of metrics
+    w = [0.0, 0.0, 0.1, 0.9]  # weights for [P, R, mAP@0.5, mAP@0.5:0.95]
+    return (x[:, :4] * w).sum(1)
 
 
-def compute_average_precision(precision, recall):
-  """Compute Average Precision according to the definition in VOCdevkit.
+def ap_per_class(tp, conf, pred_cls, target_cls, plot=False, save_dir='.', names=()):
+    """ Compute the average precision, given the recall and precision curves.
+    Source: https://github.com/rafaelpadilla/Object-Detection-Metrics.
+    # Arguments
+        tp:  True positives (nparray, nx1 or nx10).
+        conf:  Objectness value from 0-1 (nparray).
+        pred_cls:  Predicted object classes (nparray).
+        target_cls:  True object classes (nparray).
+        plot:  Plot precision-recall curve at mAP@0.5
+        save_dir:  Plot save directory
+    # Returns
+        The average precision as computed in py-faster-rcnn.
+    """
 
-  Precision is modified to ensure that it does not decrease as recall
-  decrease.
+    # Sort by objectness
+    i = np.argsort(-conf)
+    tp, conf, pred_cls = tp[i], conf[i], pred_cls[i]
 
-  Args:
-    precision: A float [N, 1] numpy array of precisions
-    recall: A float [N, 1] numpy array of recalls
+    # Find unique classes
+    unique_classes = np.unique(target_cls)
+    nc = unique_classes.shape[0]  # number of classes, number of detections
 
-  Raises:
-    ValueError: if the input is not of the correct format
+    # Create Precision-Recall curve and compute AP for each class
+    px, py = np.linspace(0, 1, 1000), []  # for plotting
+    ap, p, r = np.zeros((nc, tp.shape[1])), np.zeros((nc, 1000)), np.zeros((nc, 1000))
+    for ci, c in enumerate(unique_classes):
+        i = pred_cls == c
+        n_l = (target_cls == c).sum()  # number of labels
+        n_p = i.sum()  # number of predictions
 
-  Returns:
-    average_precison: The area under the precision recall curve. NaN if
-      precision and recall are None.
+        if n_p == 0 or n_l == 0:
+            continue
+        else:
+            # Accumulate FPs and TPs
+            fpc = (1 - tp[i]).cumsum(0)
+            tpc = tp[i].cumsum(0)
 
-  """
-  if precision is None:
-    if recall is not None:
-      raise ValueError("If precision is None, recall must also be None")
-    return np.NAN
+            # Recall
+            recall = tpc / (n_l + 1e-16)  # recall curve
+            r[ci] = np.interp(-px, -conf[i], recall[:, 0], left=0)  # negative x, xp because xp decreases
 
-  if not isinstance(precision, np.ndarray) or not isinstance(
-      recall, np.ndarray):
-    raise ValueError("precision and recall must be numpy array")
-  if precision.dtype != np.float or recall.dtype != np.float:
-    raise ValueError("input must be float numpy array.")
-  if len(precision) != len(recall):
-    raise ValueError("precision and recall must be of the same size.")
-  if not precision.size:
-    return 0.0
-  if np.amin(precision) < 0 or np.amax(precision) > 1:
-    raise ValueError("Precision must be in the range of [0, 1].")
-  if np.amin(recall) < 0 or np.amax(recall) > 1:
-    raise ValueError("recall must be in the range of [0, 1].")
-  if not all(recall[i] <= recall[i + 1] for i in range(len(recall) - 1)):
-    raise ValueError("recall must be a non-decreasing array")
+            # Precision
+            precision = tpc / (tpc + fpc)  # precision curve
+            p[ci] = np.interp(-px, -conf[i], precision[:, 0], left=1)  # p at pr_score
 
-  recall = np.concatenate([[0], recall, [1]])
-  precision = np.concatenate([[0], precision, [0]])
+            # AP from recall-precision curve
+            for j in range(tp.shape[1]):
+                ap[ci, j], mpre, mrec = compute_ap(recall[:, j], precision[:, j])
+                if plot and j == 0:
+                    py.append(np.interp(px, mrec, mpre))  # precision at mAP@0.5
 
-  # Preprocess precision to be a non-decreasing array
-  for i in range(len(precision) - 2, -1, -1):
-    precision[i] = np.maximum(precision[i], precision[i + 1])
+    # Compute F1 (harmonic mean of precision and recall)
+    f1 = 2 * p * r / (p + r + 1e-16)
+    if plot:
+        plot_pr_curve(px, py, ap, Path(save_dir) / 'PR_curve.png', names)
+        plot_mc_curve(px, f1, Path(save_dir) / 'F1_curve.png', names, ylabel='F1')
+        plot_mc_curve(px, p, Path(save_dir) / 'P_curve.png', names, ylabel='Precision')
+        plot_mc_curve(px, r, Path(save_dir) / 'R_curve.png', names, ylabel='Recall')
 
-  indices = np.where(recall[1:] != recall[:-1])[0] + 1
-  average_precision = np.sum(
-      (recall[indices] - recall[indices - 1]) * precision[indices])
-  return average_precision
-
-
-def compute_cor_loc(num_gt_imgs_per_class,
-                    num_images_correctly_detected_per_class):
-  """Compute CorLoc according to the definition in the following paper.
-
-  https://www.robots.ox.ac.uk/~vgg/rg/papers/deselaers-eccv10.pdf
-
-  Returns nans if there are no ground truth images for a class.
-
-  Args:
-    num_gt_imgs_per_class: 1D array, representing number of images containing
-        at least one object instance of a particular class
-    num_images_correctly_detected_per_class: 1D array, representing number of
-        images that are correctly detected at least one object instance of a
-        particular class
-
-  Returns:
-    corloc_per_class: A float numpy array represents the corloc score of each
-      class
-  """
-  return np.where(
-      num_gt_imgs_per_class == 0, np.nan,
-      num_images_correctly_detected_per_class / num_gt_imgs_per_class)
+    i = f1.mean(0).argmax()  # max F1 index
+    return p[:, i], r[:, i], ap, f1[:, i], unique_classes.astype('int32')
 
 
-def compute_median_rank_at_k(tp_fp_list, k):
-  """Computes MedianRank@k, where k is the top-scoring labels.
+def compute_ap(recall, precision):
+    """ Compute the average precision, given the recall and precision curves
+    # Arguments
+        recall:    The recall curve (list)
+        precision: The precision curve (list)
+    # Returns
+        Average precision, precision curve, recall curve
+    """
 
-  Args:
-    tp_fp_list: a list of numpy arrays; each numpy array corresponds to the all
-        detection on a single image, where the detections are sorted by score in
-        descending order. Further, each numpy array element can have boolean or
-        float values. True positive elements have either value >0.0 or True;
-        any other value is considered false positive.
-    k: number of top-scoring proposals to take.
+    # Append sentinel values to beginning and end
+    mrec = np.concatenate(([0.0], recall, [1.0]))
+    mpre = np.concatenate(([1.0], precision, [0.0]))
 
-  Returns:
-    median_rank: median rank of all true positive proposals among top k by
-      score.
-  """
-  ranks = []
-  for i in range(len(tp_fp_list)):
-    ranks.append(
-        np.where(tp_fp_list[i][0:min(k, tp_fp_list[i].shape[0])] > 0)[0])
-  concatenated_ranks = np.concatenate(ranks)
-  return np.median(concatenated_ranks)
+    # Compute the precision envelope
+    mpre = np.flip(np.maximum.accumulate(np.flip(mpre)))
+
+    # Integrate area under curve
+    method = 'interp'  # methods: 'continuous', 'interp'
+    if method == 'interp':
+        x = np.linspace(0, 1, 101)  # 101-point interp (COCO)
+        ap = np.trapz(np.interp(x, mrec, mpre), x)  # integrate
+    else:  # 'continuous'
+        i = np.where(mrec[1:] != mrec[:-1])[0]  # points where x axis (recall) changes
+        ap = np.sum((mrec[i + 1] - mrec[i]) * mpre[i + 1])  # area under curve
+
+    return ap, mpre, mrec
 
 
-def compute_recall_at_k(tp_fp_list, num_gt, k):
-  """Computes Recall@k, MedianRank@k, where k is the top-scoring labels.
+class ConfusionMatrix:
+    # Updated version of https://github.com/kaanakan/object_detection_confusion_matrix
+    def __init__(self, nc, conf=0.25, iou_thres=0.45):
+        self.matrix = np.zeros((nc + 1, nc + 1))
+        self.nc = nc  # number of classes
+        self.conf = conf
+        self.iou_thres = iou_thres
 
-  Args:
-    tp_fp_list: a list of numpy arrays; each numpy array corresponds to the all
-        detection on a single image, where the detections are sorted by score in
-        descending order. Further, each numpy array element can have boolean or
-        float values. True positive elements have either value >0.0 or True;
-        any other value is considered false positive.
-    num_gt: number of groundtruth anotations.
-    k: number of top-scoring proposals to take.
+    def process_batch(self, detections, labels):
+        """
+        Return intersection-over-union (Jaccard index) of boxes.
+        Both sets of boxes are expected to be in (x1, y1, x2, y2) format.
+        Arguments:
+            detections (Array[N, 6]), x1, y1, x2, y2, conf, class
+            labels (Array[M, 5]), class, x1, y1, x2, y2
+        Returns:
+            None, updates confusion matrix accordingly
+        """
+        detections = detections[detections[:, 4] > self.conf]
+        gt_classes = labels[:, 0].int()
+        detection_classes = detections[:, 5].int()
+        iou = box_iou(labels[:, 1:], detections[:, :4])
 
-  Returns:
-    recall: recall evaluated on the top k by score detections.
-  """
+        x = torch.where(iou > self.iou_thres)
+        if x[0].shape[0]:
+            matches = torch.cat((torch.stack(x, 1), iou[x[0], x[1]][:, None]), 1).cpu().numpy()
+            if x[0].shape[0] > 1:
+                matches = matches[matches[:, 2].argsort()[::-1]]
+                matches = matches[np.unique(matches[:, 1], return_index=True)[1]]
+                matches = matches[matches[:, 2].argsort()[::-1]]
+                matches = matches[np.unique(matches[:, 0], return_index=True)[1]]
+        else:
+            matches = np.zeros((0, 3))
 
-  tp_fp_eval = []
-  for i in range(len(tp_fp_list)):
-    tp_fp_eval.append(tp_fp_list[i][0:min(k, tp_fp_list[i].shape[0])])
+        n = matches.shape[0] > 0
+        m0, m1, _ = matches.transpose().astype(np.int16)
+        for i, gc in enumerate(gt_classes):
+            j = m0 == i
+            if n and sum(j) == 1:
+                self.matrix[detection_classes[m1[j]], gc] += 1  # correct
+            else:
+                self.matrix[self.nc, gc] += 1  # background FP
 
-  tp_fp_eval = np.concatenate(tp_fp_eval)
+        if n:
+            for i, dc in enumerate(detection_classes):
+                if not any(m1 == i):
+                    self.matrix[dc, self.nc] += 1  # background FN
 
-  return np.sum(tp_fp_eval) / num_gt
+    def matrix(self):
+        return self.matrix
+
+    def plot(self, normalize=True, save_dir='', names=()):
+        try:
+            import seaborn as sn
+
+            array = self.matrix / ((self.matrix.sum(0).reshape(1, -1) + 1E-6) if normalize else 1)  # normalize columns
+            array[array < 0.005] = np.nan  # don't annotate (would appear as 0.00)
+
+            fig = plt.figure(figsize=(12, 9), tight_layout=True)
+            sn.set(font_scale=1.0 if self.nc < 50 else 0.8)  # for label size
+            labels = (0 < len(names) < 99) and len(names) == self.nc  # apply names to ticklabels
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore')  # suppress empty matrix RuntimeWarning: All-NaN slice encountered
+                sn.heatmap(array, annot=self.nc < 30, annot_kws={"size": 8}, cmap='Blues', fmt='.2f', square=True,
+                           xticklabels=names + ['background FP'] if labels else "auto",
+                           yticklabels=names + ['background FN'] if labels else "auto").set_facecolor((1, 1, 1))
+            fig.axes[0].set_xlabel('True')
+            fig.axes[0].set_ylabel('Predicted')
+            fig.savefig(Path(save_dir) / 'confusion_matrix.png', dpi=250)
+            plt.close()
+        except Exception as e:
+            print(f'WARNING: ConfusionMatrix plot failure: {e}')
+
+    def print(self):
+        for i in range(self.nc + 1):
+            print(' '.join(map(str, self.matrix[i])))
+
+
+def bbox_iou(box1, box2, x1y1x2y2=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7):
+    # Returns the IoU of box1 to box2. box1 is 4, box2 is nx4
+    box2 = box2.T
+
+    # Get the coordinates of bounding boxes
+    if x1y1x2y2:  # x1, y1, x2, y2 = box1
+        b1_x1, b1_y1, b1_x2, b1_y2 = box1[0], box1[1], box1[2], box1[3]
+        b2_x1, b2_y1, b2_x2, b2_y2 = box2[0], box2[1], box2[2], box2[3]
+    else:  # transform from xywh to xyxy
+        b1_x1, b1_x2 = box1[0] - box1[2] / 2, box1[0] + box1[2] / 2
+        b1_y1, b1_y2 = box1[1] - box1[3] / 2, box1[1] + box1[3] / 2
+        b2_x1, b2_x2 = box2[0] - box2[2] / 2, box2[0] + box2[2] / 2
+        b2_y1, b2_y2 = box2[1] - box2[3] / 2, box2[1] + box2[3] / 2
+
+    # Intersection area
+    inter = (torch.min(b1_x2, b2_x2) - torch.max(b1_x1, b2_x1)).clamp(0) * \
+            (torch.min(b1_y2, b2_y2) - torch.max(b1_y1, b2_y1)).clamp(0)
+
+    # Union Area
+    w1, h1 = b1_x2 - b1_x1, b1_y2 - b1_y1 + eps
+    w2, h2 = b2_x2 - b2_x1, b2_y2 - b2_y1 + eps
+    union = w1 * h1 + w2 * h2 - inter + eps
+
+    iou = inter / union
+    if GIoU or DIoU or CIoU:
+        cw = torch.max(b1_x2, b2_x2) - torch.min(b1_x1, b2_x1)  # convex (smallest enclosing box) width
+        ch = torch.max(b1_y2, b2_y2) - torch.min(b1_y1, b2_y1)  # convex height
+        if CIoU or DIoU:  # Distance or Complete IoU https://arxiv.org/abs/1911.08287v1
+            c2 = cw ** 2 + ch ** 2 + eps  # convex diagonal squared
+            rho2 = ((b2_x1 + b2_x2 - b1_x1 - b1_x2) ** 2 +
+                    (b2_y1 + b2_y2 - b1_y1 - b1_y2) ** 2) / 4  # center distance squared
+            if DIoU:
+                return iou - rho2 / c2  # DIoU
+            elif CIoU:  # https://github.com/Zzh-tju/DIoU-SSD-pytorch/blob/master/utils/box/box_utils.py#L47
+                v = (4 / math.pi ** 2) * torch.pow(torch.atan(w2 / h2) - torch.atan(w1 / h1), 2)
+                with torch.no_grad():
+                    alpha = v / (v - iou + (1 + eps))
+                return iou - (rho2 / c2 + v * alpha)  # CIoU
+        else:  # GIoU https://arxiv.org/pdf/1902.09630.pdf
+            c_area = cw * ch + eps  # convex area
+            return iou - (c_area - union) / c_area  # GIoU
+    else:
+        return iou  # IoU
+
+
+def box_iou(box1, box2):
+    # https://github.com/pytorch/vision/blob/master/torchvision/ops/boxes.py
+    """
+    Return intersection-over-union (Jaccard index) of boxes.
+    Both sets of boxes are expected to be in (x1, y1, x2, y2) format.
+    Arguments:
+        box1 (Tensor[N, 4])
+        box2 (Tensor[M, 4])
+    Returns:
+        iou (Tensor[N, M]): the NxM matrix containing the pairwise
+            IoU values for every element in boxes1 and boxes2
+    """
+
+    def box_area(box):
+        # box = 4xn
+        return (box[2] - box[0]) * (box[3] - box[1])
+
+    area1 = box_area(box1.T)
+    area2 = box_area(box2.T)
+
+    # inter(N,M) = (rb(N,M,2) - lt(N,M,2)).clamp(0).prod(2)
+    inter = (torch.min(box1[:, None, 2:], box2[:, 2:]) - torch.max(box1[:, None, :2], box2[:, :2])).clamp(0).prod(2)
+    return inter / (area1[:, None] + area2 - inter)  # iou = inter / (area1 + area2 - inter)
+
+
+def bbox_ioa(box1, box2, eps=1E-7):
+    """ Returns the intersection over box2 area given box1, box2. Boxes are x1y1x2y2
+    box1:       np.array of shape(4)
+    box2:       np.array of shape(nx4)
+    returns:    np.array of shape(n)
+    """
+
+    box2 = box2.transpose()
+
+    # Get the coordinates of bounding boxes
+    b1_x1, b1_y1, b1_x2, b1_y2 = box1[0], box1[1], box1[2], box1[3]
+    b2_x1, b2_y1, b2_x2, b2_y2 = box2[0], box2[1], box2[2], box2[3]
+
+    # Intersection area
+    inter_area = (np.minimum(b1_x2, b2_x2) - np.maximum(b1_x1, b2_x1)).clip(0) * \
+                 (np.minimum(b1_y2, b2_y2) - np.maximum(b1_y1, b2_y1)).clip(0)
+
+    # box2 area
+    box2_area = (b2_x2 - b2_x1) * (b2_y2 - b2_y1) + eps
+
+    # Intersection over box2 area
+    return inter_area / box2_area
+
+
+def wh_iou(wh1, wh2):
+    # Returns the nxm IoU matrix. wh1 is nx2, wh2 is mx2
+    wh1 = wh1[:, None]  # [N,1,2]
+    wh2 = wh2[None]  # [1,M,2]
+    inter = torch.min(wh1, wh2).prod(2)  # [N,M]
+    return inter / (wh1.prod(2) + wh2.prod(2) - inter)  # iou = inter / (area1 + area2 - inter)
+
+
+# Plots ----------------------------------------------------------------------------------------------------------------
+
+def plot_pr_curve(px, py, ap, save_dir='pr_curve.png', names=()):
+    # Precision-recall curve
+    fig, ax = plt.subplots(1, 1, figsize=(9, 6), tight_layout=True)
+    py = np.stack(py, axis=1)
+
+    if 0 < len(names) < 21:  # display per-class legend if < 21 classes
+        for i, y in enumerate(py.T):
+            ax.plot(px, y, linewidth=1, label=f'{names[i]} {ap[i, 0]:.3f}')  # plot(recall, precision)
+    else:
+        ax.plot(px, py, linewidth=1, color='grey')  # plot(recall, precision)
+
+    ax.plot(px, py.mean(1), linewidth=3, color='blue', label='all classes %.3f mAP@0.5' % ap[:, 0].mean())
+    ax.set_xlabel('Recall')
+    ax.set_ylabel('Precision')
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    plt.legend(bbox_to_anchor=(1.04, 1), loc="upper left")
+    fig.savefig(Path(save_dir), dpi=250)
+    plt.close()
+
+
+def plot_mc_curve(px, py, save_dir='mc_curve.png', names=(), xlabel='Confidence', ylabel='Metric'):
+    # Metric-confidence curve
+    fig, ax = plt.subplots(1, 1, figsize=(9, 6), tight_layout=True)
+
+    if 0 < len(names) < 21:  # display per-class legend if < 21 classes
+        for i, y in enumerate(py):
+            ax.plot(px, y, linewidth=1, label=f'{names[i]}')  # plot(confidence, metric)
+    else:
+        ax.plot(px, py.T, linewidth=1, color='grey')  # plot(confidence, metric)
+
+    y = py.mean(0)
+    ax.plot(px, y, linewidth=3, color='blue', label=f'all classes {y.max():.2f} at {px[y.argmax()]:.3f}')
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    plt.legend(bbox_to_anchor=(1.04, 1), loc="upper left")
+    fig.savefig(Path(save_dir), dpi=250)
+    plt.close()
