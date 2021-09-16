@@ -121,7 +121,6 @@ class ModelInference(object):
                 s, im0, frames = '', im0s.copy(), getattr(dataset, 'frame', 0)
                 s += '%gx%g ' % img.shape[2:]  # print string
                 annotator = Annotator(im0, line_width=self.line_thickness, pil=not ascii)
-
                 if len(det):
                     # Rescale boxes from img_size to im0 size
                     det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0.shape).round()

@@ -22,3 +22,7 @@ Project Theta is a assistant for the visually impared using SLAM, navigation and
   3. Run the launchfile "ros2 launch src/launch/webcam_launch.py".
   Launch file needs to be run from the main workspace folder due to the location of the model files. (Need to adjust this in the future)
 
+### To launch Nav2
+
+  1. Launch with map: ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=False map:=/path/to/your-map.yaml then launch RVIZ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/launch/nav2_default_view.rviz
+  2. Launch without map: ros2 launch nav2_bringup navigation_launch.py

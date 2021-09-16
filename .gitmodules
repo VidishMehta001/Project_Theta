@@ -10,3 +10,6 @@
 [submodule "image_pipeline"]
 	path = image_pipeline
 	url = git@github.com:mecarill/image_pipeline.git
+[submodule "navigation2"]
+	path = navigation2
+	url = git@github.com:wc975/navigation2.git
