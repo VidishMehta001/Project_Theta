@@ -28,7 +28,8 @@ setup(
             'depth_coord = theta_pkgs.depth_coord_extract:main',
             'coords_filter_match = theta_pkgs.coords_filter_match:main',
             'database_service = theta_pkgs.database_service:main',
-            'camera_output = theta_pkgs.camera_output:main'
+            'camera_output = theta_pkgs.camera_output:main',
+            'last_mile = theta_pkgs.last_mile:main'
         ],
     },
 )

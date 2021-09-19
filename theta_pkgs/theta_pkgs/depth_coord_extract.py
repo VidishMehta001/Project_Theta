@@ -53,9 +53,10 @@ class CoordTransfer(Node):
 		self.bridge = CvBridge()
 
 		self.right_proj_matrix = np.matrix([
-			[917.723107, 0.000000, 647.542511, -67.342795],
-			[0.000000, 917.723107, 362.991959, 0.000000],
+			[442.960220, 0.000000, 360.386665, -32.884516],
+			[0.000000, 442.960220, 196.041361, 0.000000],
 			[0.000000, 0.000000, 1.000000, 0.000000]])
+
 		self.inv_right_proj_matrix = self.right_proj_matrix.getI()
 
 		self.color_proj_matrix = np.matrix([

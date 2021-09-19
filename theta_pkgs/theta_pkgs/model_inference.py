@@ -145,7 +145,7 @@ class ModelInference(object):
                 centroid_dict = ModelInference.get_image_centroid(bboxes, detections)
             # Stream results
             im0 = annotator.result()
-            im0 = bridge.cv2_to_imgmsg(im0, encoding="rgb8")
+            im0 = self.bridge.cv2_to_imgmsg(im0, encoding="rgb8")
             
         return im0, centroid_dict
 
